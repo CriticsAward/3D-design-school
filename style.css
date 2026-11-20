@@ -1,6 +1,6 @@
 /* FORMA / LAB — visual system.
    Editorial direction: industrial product imagery, Swiss grid, quiet interaction.
-   Functional markup and application state deliberately remain untouched. */
+   Course data and saved user state remain untouched. */
 :root{
   --ink:#151817;
   --night:#111413;
@@ -33,6 +33,9 @@ h1,h2,h3,p{margin-top:0}
 h1,h2,h3{font-weight:700}
 p{line-height:1.65}
 ::selection{background:#b9d7ca;color:#10211c}
+.eyebrow{display:block;color:var(--signal);font-size:12px;font-weight:700;line-height:1.5;letter-spacing:.02em;margin-bottom:9px}
+.lesson .eyebrow{margin-bottom:16px}
+@media(max-width:520px){.eyebrow{font-size:11px}}
 /* Course directory, lessons, shared forms */
 .link,.text-link{
   display:inline-flex;
