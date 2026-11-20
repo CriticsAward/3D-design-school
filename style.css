@@ -263,6 +263,7 @@ body{overflow-x:hidden}
 .top-actions .link{font-size:13px;color:var(--muted)}
 .chat-toggle{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 15px;border:1px solid #b8c9bd;border-radius:16px;background:#f8fbf6;color:#253d2b;font-size:13px;font-weight:700}
 .chat-toggle svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.settings-toggle svg{display:none;width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .btn{border-radius:16px;font-weight:700}
 .btn.secondary{background:transparent}
 .panel{border:1px solid var(--line);border-radius:18px;background:#fafcf8}
@@ -356,7 +357,10 @@ body{overflow-x:hidden}
  .top .brand{font-size:21px}
  .top-actions{gap:9px}
  .top-actions .link{font-size:12px}
- .chat-toggle{padding:0 11px}
+ .top-actions .calendar-toggle,.top-actions .chat-toggle,.top-actions .settings-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;min-width:44px;height:44px;min-height:44px;padding:0;border:1px solid #b8c9bd;border-radius:14px;background:#f8fbf6;color:#253d2b}
+ .top-actions .calendar-toggle svg,.top-actions .chat-toggle svg,.top-actions .settings-toggle svg{display:block;width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ .top-actions .calendar-toggle span,.top-actions .chat-toggle span,.top-actions .settings-toggle span{display:none}
+ .main:has(.home-page) .top-actions .calendar-toggle,.main:has(.home-page) .top-actions .chat-toggle,.main:has(.home-page) .top-actions .settings-toggle{color:#f2f7ef;background:#16271cae;border-color:#ffffff69;backdrop-filter:blur(13px)}
  .nav{width:calc(100vw - 24px);max-width:460px;bottom:calc(9px + env(safe-area-inset-bottom))}
  .nav a{flex:1;flex-direction:column;gap:4px;min-width:0;min-height:53px;padding:7px 3px;font-size:10px}
  .nav a svg{width:20px;height:20px}
@@ -371,7 +375,7 @@ body{overflow-x:hidden}
  .reaction-two,.reaction-four{display:none}
  .reaction-one{top:19%;right:7%}
  .reaction-three{top:41%;right:12%;bottom:auto}
- .chat{left:12px;right:12px;bottom:calc(79px + env(safe-area-inset-bottom));width:auto;height:min(76dvh,650px);max-height:calc(100dvh - 90px - env(safe-area-inset-bottom))}
+ .chat{top:calc(env(safe-area-inset-top) + 12px);bottom:auto;left:10px;right:10px;width:auto;height:min(650px,calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px));max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px);overflow:hidden}
  .study-feature{padding:34px 29px;border-radius:23px}
  .study-feature h1{font-size:clamp(40px,8vw,61px)}
  .module>summary{grid-template-columns:51px minmax(0,1fr) 22px;gap:12px}
@@ -385,8 +389,6 @@ body{overflow-x:hidden}
  .top .brand{font-size:19px}
  .top-actions{gap:7px}
  .top-actions .link{font-size:11px}
- .chat-toggle{padding:0 9px;gap:5px;font-size:12px}
- .chat-toggle svg{width:17px;height:17px}
  .hero{padding:103px 19px calc(123px + env(safe-area-inset-bottom))}
  .hero-copy h1{font-size:clamp(43px,12.5vw,60px);margin-bottom:16px}
  .hero-copy p{font-size:14px}
@@ -421,7 +423,7 @@ body{overflow-x:hidden}
  .stat span{font-size:12px}
  .split{grid-template-columns:1fr}
  .panel{padding:22px 19px}
- .chat{left:8px;right:8px;border-radius:19px}
+ .chat{left:10px;right:10px;border-radius:19px}
  .chat header{padding:13px 14px}
  .messages{padding:14px 10px}
  .message,.message.grouped{gap:8px}
@@ -468,6 +470,7 @@ body{overflow-x:hidden}
 .reaction-one{top:23%;right:15%;animation-delay:-2s}.reaction-two{top:47%;right:8%;animation-delay:-13s}.reaction-three{bottom:25%;right:30%;animation-delay:-24s}.reaction-four{top:19%;right:34%;animation-delay:-35s}.reaction-five{top:37%;right:22%;animation-delay:-6s}.reaction-six{bottom:37%;right:11%;animation-delay:-17s}.reaction-seven{top:60%;right:37%;animation-delay:-28s}.reaction-eight{top:29%;right:42%;animation-delay:-39s}.reaction-nine{top:52%;right:27%;animation-delay:-10s}.reaction-ten{bottom:18%;right:18%;animation-delay:-21s}.reaction-eleven{top:16%;right:24%;animation-delay:-32s}.reaction-twelve{bottom:44%;right:39%;animation-delay:-43s}.reaction-thirteen{top:42%;right:45%;animation-delay:-4s}.reaction-fourteen{bottom:28%;right:43%;animation-delay:-47s}
 @media(max-width:800px){.calendar-toggle{padding:0 10px}.calendar-focus article{align-items:flex-start;flex-direction:column}.calendar-focus .btn{min-height:45px}.calendar-focus p span{display:block;margin:6px 0 0}.timeline-project{grid-template-columns:38px minmax(0,1fr)}}
 @media(max-width:520px){.calendar-toggle{width:43px;justify-content:center;padding:0}.calendar-toggle span{display:none}.calendar-toggle svg{width:20px;height:20px}.calendar-month{padding:18px 12px}.month-grid{gap:1px}.month-day{min-height:46px;border-radius:10px;font-size:12px}.weekday{font-size:10px}.calendar-selected p{display:flex}.calendar-focus{padding:23px 19px}.timeline-project{grid-template-columns:27px minmax(0,1fr);gap:10px;padding:20px 0}.timeline-head{align-items:flex-start;flex-direction:column;gap:8px}.timeline-content>p{line-height:1.6}.timeline-actions{gap:8px 15px}.early-start{align-items:flex-start;flex-direction:column;padding:19px}.early-start .btn{width:100%}.project-preview{grid-template-columns:40px minmax(0,1fr)}}
-@media(max-width:520px){.calendar-backdrop{align-items:end;padding:10px 10px calc(10px + env(safe-area-inset-bottom))}.calendar-popup{max-height:min(760px,calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));padding:21px 16px;border-radius:23px}.calendar-popup .month-day{min-height:43px}.calendar-popup .calendar-selected p{font-size:12px}}
-@media(max-width:380px){.top-actions{gap:5px}.calendar-toggle,.chat-toggle{min-height:40px}.chat-toggle span{display:none}.calendar-month{padding-left:8px;padding-right:8px}.month-day{min-height:42px}}
+@media(max-width:800px){.calendar-backdrop{align-items:start;padding:calc(env(safe-area-inset-top) + 12px) 10px calc(12px + env(safe-area-inset-bottom))}.calendar-popup{max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px)}}
+@media(max-width:520px){.calendar-popup{padding:21px 16px;border-radius:23px}.calendar-popup .month-day{min-height:43px}.calendar-popup .calendar-selected p{font-size:12px}}
+@media(max-width:380px){.top-actions{gap:5px}.top-actions .calendar-toggle,.top-actions .chat-toggle,.top-actions .settings-toggle{width:44px;min-width:44px;height:44px;min-height:44px}.calendar-month{padding-left:8px;padding-right:8px}.month-day{min-height:42px}}
 @media(prefers-reduced-motion:reduce){.peer-reaction{opacity:0}.reaction-one{opacity:1}}
