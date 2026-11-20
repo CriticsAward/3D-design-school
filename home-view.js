@@ -12,26 +12,21 @@ function objectArt(module){
   const [file,description]=art[module-1];
   return `<img class="hero-art" src="./assets/modules/${file}.webp" width="800" height="800" alt="${description}" decoding="async" fetchpriority="high">`;
 }
-export function homeView({n,w,m,d,status,complete,checks}){
-  const due=d.planned?`Плановый срок ${escape(d.planned)}${d.final?' · окончательный '+escape(d.final):''}`:'Дата старта не назначена';
-  return `<div class="home-head"><div class="eyebrow">FORMA / LAB · ЛИЧНАЯ АКАДЕМИЯ</div><p>Пространство, предмет и визуализация. Учёба через практику.</p></div>
-  <section class="hero" aria-label="Текущий модуль">
+export function homeView({n,w,m,status,avatarMarkup}){
+  const first=n===1;
+  const lessonTitle=first?'Знакомство с Blender и трёхмерным пространством':w.topic;
+  const reactions=[['Алина','🙂','reaction-one'],['Макс','🔥','reaction-two'],['Катя','👀','reaction-three'],['Игорь','++','reaction-four']];
+  return `<div class="home-head"><div class="eyebrow">FORMA / LAB · ЛИЧНАЯ АКАДЕМИЯ</div><p>Спокойный старт. Один шаг за раз.</p></div>
+  <section class="hero" aria-label="Текущее занятие">
     <div class="hero-copy">
-      <div class="hero-meta"><span class="eyebrow">МОДУЛЬ ${String(m.number).padStart(2,'0')} / 07</span><span class="eyebrow">НЕДЕЛЯ ${String(n).padStart(2,'0')} / 28</span></div>
-      <h1>${escape(m.name)}</h1>
-      <div class="hero-tail"><p>${escape(m.goal)}</p><span class="hero-index">${String(m.number).padStart(2,'0')} <small>/ 07</small></span></div>
+      <div class="hero-meta"><span class="eyebrow">${first?'ПЕРВОЕ ЗАНЯТИЕ':'ТЕКУЩЕЕ ЗАНЯТИЕ'} · ${String(n).padStart(2,'0')} / 28</span><span class="eyebrow">МОДУЛЬ ${String(m.number).padStart(2,'0')} / 07</span></div>
+      <div class="home-welcome"><h1>${first?'Сначала научись смотреть':escape(m.name)}</h1><p>${first?'Ты на первом занятии. Начнём с простого и разберёмся вместе — у тебя всё получится.':escape(m.goal)}</p></div>
+      <div class="home-lesson"><div><span class="eyebrow">СЕЙЧАС</span><h2>${escape(lessonTitle)}</h2></div><span class="tag">${escape(status)}</span></div>
+      <a class="btn home-continue" href="#/week/${n}">Продолжить обучение <span aria-hidden="true">↗</span></a>
+      <div class="home-encouragement"><span>ТВОЙ ТЕМП — НОРМАЛЬНЫЙ</span><span>У тебя всё получится.</span></div>
     </div>
-    <div class="hero-media"><span class="eyebrow">ОБЪЕКТ ИССЛЕДОВАНИЯ / ${String(m.number).padStart(2,'0')}</span>${objectArt(m.number)}<div class="hero-media-foot"><span>FORMA / LAB</span><span>3D · DESIGN STUDIES</span></div></div>
-  </section>
-  <section class="current-task" aria-label="Текущее занятие">
-    <div class="task-top"><span class="eyebrow">СЛЕДУЮЩЕЕ ЗАНЯТИЕ / ${String(n).padStart(2,'0')}</span><span class="tag">${escape(status)}</span></div>
-    <div class="task-body">
-      <div><h2>${n===1?'Знакомство с Blender и трёхмерным пространством':escape(w.topic)}</h2><p>${escape(w.practice)}</p></div>
-      <div class="task-cta"><a class="btn" href="#/week/${n}">Открыть занятие <span aria-hidden="true">↗</span></a><span>${due}</span></div>
+    <div class="hero-media"><span class="eyebrow">ОБЪЕКТ ИССЛЕДОВАНИЯ / ${String(m.number).padStart(2,'0')}</span>${objectArt(m.number)}<div class="hero-media-foot"><span>FORMA / LAB</span><span>3D · DESIGN STUDIES</span></div>
+      <div class="peer-reactions" aria-label="Примеры реакций группы">${reactions.map(([name,reaction,klass])=>`<span class="peer-reaction ${klass}" aria-hidden="true">${avatarMarkup(name)}<span class="peer-bubble">${reaction}</span></span>`).join('')}</div>
     </div>
-  </section>
-  <div class="home-bottom">
-    <section><h2>УЧЕБНЫЙ МАРШРУТ / 01</h2><p><strong>${complete}</strong> из 28 недель зачтено · <strong>${checks}</strong> контрольных работ.</p><a class="text-link" href="#/progress">Посмотреть прогресс ↗</a></section>
-    <section><h2>ПЛАНИРОВАНИЕ / 02</h2><p>${d.planned?'Ближайший плановый срок: '+escape(d.planned):'Дата начала не выбрана. Сроки можно установить вручную.'}</p><a class="text-link" href="#/calendar">Открыть календарь ↗</a></section>
-  </div>`;
+  </section>`;
 }
