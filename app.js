@@ -38,7 +38,7 @@ function study(){
       <h1>${n===1?'Знакомство с Blender':escape(w.topic)}</h1>
       <p class="study-description">${escape(w.practice)}</p>
       <div class="study-feature-bottom">
-        <a class="btn study-continue" href="#/week/${n}">Продолжить обучение <span aria-hidden="true">↗</span></a>
+        <a class="btn study-continue" href="#/week/${n}">Продолжить обучение <span aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
         <div class="study-progress"><span>Пройдено ${done} из 28 занятий</span><div class="study-progress-track" role="progressbar" aria-label="Пройденные занятия" aria-valuemin="0" aria-valuemax="28" aria-valuenow="${done}"><i style="width:${done/28*100}%"></i></div></div>
       </div>
     </section>

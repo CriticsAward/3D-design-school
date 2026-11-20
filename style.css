@@ -294,8 +294,8 @@ body{overflow-x:hidden}
 .scene-live .scene-canvas{opacity:1}
 .scene-live .hero-art{opacity:0}
 .hero-shade{z-index:-1;pointer-events:none;background:linear-gradient(90deg,#101a14f5 0%,#101a14cf 27%,#101a1470 50%,#101a1400 86%),linear-gradient(0deg,#101a14a8,transparent 30%)}
-.hero-copy{position:relative;z-index:2;width:min(580px,48vw)}
-.hero-copy h1{font-size:clamp(58px,7.8vw,124px);font-weight:700;letter-spacing:-.09em;line-height:1.01;margin-bottom:25px}
+.hero-copy{position:relative;z-index:2;width:min(720px,54vw)}
+.hero-copy h1{font-size:clamp(58px,6vw,96px);font-weight:700;letter-spacing:-.09em;line-height:1.01;margin-bottom:25px}
 .hero-copy p{font-size:clamp(15px,1.45vw,19px);max-width:380px;color:#d9e3d9;line-height:1.65}
 .home-continue{display:flex;justify-content:space-between;min-height:60px;width:min(100%,290px);margin-top:34px;background:#eaf1e8;color:#18291d;border-color:#eaf1e8}
 .home-continue:hover{background:#fff;color:#18291d;border-color:#fff}
@@ -426,3 +426,6 @@ body{overflow-x:hidden}
 }
 @media(max-width:380px){.hero-copy h1{font-size:43px}.nav a{font-size:9px}.nav a svg{width:18px;height:18px}.study-feature{padding:23px 19px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.peer-reaction{opacity:0}.reaction-one{opacity:1}.hero-art{opacity:1}}
+
+.home-continue>span,.study-continue>span{display:grid;place-items:center;flex:0 0 22px}
+.home-continue>span svg,.study-continue>span svg{display:block;width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}

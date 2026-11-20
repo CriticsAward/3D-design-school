@@ -9,7 +9,7 @@ export function homeView({avatarMarkup}){
       <div class="hero-copy">
         <h1>Учись видеть<br>форму.</h1>
         <p>Blender, предметный дизайн и практика с первого дня.</p>
-        <a class="btn home-continue" href="#/study">Перейти к обучению <span aria-hidden="true">↗</span></a>
+        <a class="btn home-continue" href="#/study">Перейти к обучению <span aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
       </div>
       <div class="peer-reactions" aria-hidden="true">${reactions.map(([name,reaction,klass])=>`<span class="peer-reaction ${klass}">${avatarMarkup(name)}<span class="peer-bubble">${reaction}</span></span>`).join('')}</div>
     </section>
