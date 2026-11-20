@@ -5,7 +5,7 @@ export function homeView({n,w,m,status,avatarMarkup}){
   const reactions=[['Алина','🙂','reaction-one'],['Макс','🔥','reaction-two'],['Катя','Ого','reaction-three'],['Игорь','++','reaction-four']];
   return `<div class="home-page">
     <section class="hero" aria-label="Текущее занятие">
-      <img class="hero-art" src="./assets/hero-first-lesson.webp" width="1586" height="992" alt="Куб, металлическая сфера и стеклянный цилиндр в тёмной предметной студии" fetchpriority="high">
+      <img class="hero-art" src="./assets/hero-first-lesson.webp?v=13" width="1586" height="992" alt="Куб, металлическая сфера и стеклянный цилиндр в тёмной предметной студии" fetchpriority="high">
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-copy">
         <div class="hero-meta"><span class="hero-kicker">ЛИЧНАЯ АКАДЕМИЯ · ЗАНЯТИЕ ${String(n).padStart(2,'0')} / 28</span><span class="hero-kicker">МОДУЛЬ ${String(m.number).padStart(2,'0')}</span></div>

@@ -610,7 +610,7 @@ p{line-height:1.65}
 .message-role{border:0;background:#dce8dc;color:#385442;font-size:9px;font-weight:700}
 .message p{font-size:13px;line-height:1.6;color:#d4ddd5}
 .message time{color:#93a49a}
-.avatar{display:block;flex:0 0 40px;width:40px;height:40px;overflow:hidden;border:1px solid #ffffff43;border-radius:50%;background-image:url("./assets/people/group-portraits.webp");background-repeat:no-repeat;background-size:400% 200%;background-position:var(--avatar-x) var(--avatar-y);box-shadow:0 3px 12px #0004}
+.avatar{display:block;flex:0 0 40px;width:40px;height:40px;overflow:hidden;border:1px solid #ffffff43;border-radius:50%;background-image:url("./assets/people/group-portraits.webp?v=13");background-repeat:no-repeat;background-size:400% 200%;background-position:var(--avatar-x) var(--avatar-y);box-shadow:0 3px 12px #0004}
 .avatar-person-0{--avatar-x:0%;--avatar-y:0%}.avatar-person-1{--avatar-x:33.333%;--avatar-y:0%}.avatar-person-2{--avatar-x:66.667%;--avatar-y:0%}.avatar-person-3{--avatar-x:100%;--avatar-y:0%}.avatar-person-4{--avatar-x:0%;--avatar-y:100%}.avatar-person-5{--avatar-x:33.333%;--avatar-y:100%}.avatar-person-6{--avatar-x:66.667%;--avatar-y:100%}
 .chat footer{padding:13px 18px;border-top:1px solid #ffffff14;color:#9baca1;font-size:10px}
 @keyframes chat-enter{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
