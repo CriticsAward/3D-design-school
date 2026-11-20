@@ -375,6 +375,7 @@ body{overflow-x:hidden}
  .study-feature{padding:34px 29px;border-radius:23px}
  .study-feature h1{font-size:clamp(40px,8vw,61px)}
  .module>summary{grid-template-columns:51px minmax(0,1fr) 22px;gap:12px}
+ .module-locked-label{grid-template-columns:51px minmax(0,1fr) 22px;gap:12px}
  .module-weeks{padding-left:63px}
  .diagrams{grid-template-columns:1fr}
 }
@@ -402,7 +403,8 @@ body{overflow-x:hidden}
  .study-progress{max-width:none;width:100%}
  .study-outline{margin-top:54px}
  .study-outline-head{flex-direction:column;align-items:flex-start;gap:0}
- .module>summary{grid-template-columns:33px minmax(0,1fr) 16px;gap:11px;padding:23px 0}
+ .module>summary{grid-template-columns:33px minmax(0,1fr) 22px;gap:11px;padding:23px 0}
+ .module-locked-label{grid-template-columns:33px minmax(0,1fr) 22px;gap:11px;padding:23px 0}
  .module-number{font-size:23px}
  .module h2{font-size:23px}
  .module p{font-size:13px}
@@ -439,7 +441,7 @@ body{overflow-x:hidden}
 .module-locked h2{margin:0;color:#68756c;font-size:20px;letter-spacing:-.025em;line-height:1.35}
 .module-lock{width:17px;height:17px;fill:none;stroke:#7b8980;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:800px){.module-locked-label{grid-template-columns:51px minmax(0,1fr) 22px;gap:12px}}
-@media(max-width:520px){.module-locked-label{grid-template-columns:33px minmax(0,1fr) 16px;gap:11px;padding:23px 0}.module-locked h2{font-size:18px}}
+@media(max-width:520px){.module-locked-label{grid-template-columns:33px minmax(0,1fr) 22px;gap:11px;padding:23px 0}.module-locked h2{min-width:0;font-size:18px;overflow-wrap:break-word;word-break:normal}.module-lock{width:19px;height:19px;justify-self:center}}
 
 /* v7 project calendar and explicit training launch */
 .calendar-toggle{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 13px;border:1px solid #b8c9bd;border-radius:15px;background:#f8fbf6;color:#253d2b;text-decoration:none;font-size:13px;font-weight:700}
