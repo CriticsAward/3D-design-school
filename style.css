@@ -432,3 +432,11 @@ body{overflow-x:hidden}
 
 .home-continue>span,.study-continue>span{display:grid;place-items:center;flex:0 0 22px}
 .home-continue>span svg,.study-continue>span svg{display:block;width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.access-notice{margin:0 0 20px;padding:12px 0;border-bottom:1px solid #b7c4b8;color:#426a52;font-size:14px;line-height:1.55}
+.module-locked{opacity:.68}
+.module-locked-label{display:grid;grid-template-columns:51px minmax(0,1fr) 22px;align-items:center;gap:12px;padding:23px 0}
+.module-locked .module-number{color:#738078}
+.module-locked h2{margin:0;color:#68756c;font-size:20px;letter-spacing:-.025em;line-height:1.35}
+.module-lock{width:17px;height:17px;fill:none;stroke:#7b8980;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:800px){.module-locked-label{grid-template-columns:51px minmax(0,1fr) 22px;gap:12px}}
+@media(max-width:520px){.module-locked-label{grid-template-columns:33px minmax(0,1fr) 16px;gap:11px;padding:23px 0}.module-locked h2{font-size:18px}}

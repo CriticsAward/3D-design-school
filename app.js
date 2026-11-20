@@ -3,7 +3,7 @@ import {availableMessages,avatarMarkup} from './chat.js?v=5';
 import {statuses,initial,normalize,datesFor,localDate} from './state.js?v=2';
 import {lessonOne} from './lesson-one.js?v=2';
 import {homeView} from './home-view.js?v=8';
-import {mountScene} from './scene.js';
+import {mountScene} from './scene.js?v=2';
 
 const KEY='forma-lab-v1';
 let state;
@@ -18,6 +18,9 @@ const route=()=>decodeURIComponent(location.hash.slice(1)||'/');
 const status=n=>state.statuses[n]||statuses[0];
 const date=n=>datesFor(state,n);
 const complete=()=>Object.values(state.statuses).filter(x=>x==='Зачтено').length;
+const moduleUnlocked=number=>number===1||(number>1&&moduleUnlocked(number-1)&&modules[number-2]?.weeks.every(w=>status(w.number)==='Зачтено')===true);
+const weekUnlocked=n=>{const m=mod(n);return Boolean(m&&moduleUnlocked(m.number))};
+const nearestAvailableWeek=target=>modules.filter(m=>moduleUnlocked(m.number)).flatMap(m=>m.weeks.map(w=>w.number)).reduce((best,n)=>Math.abs(n-target)<Math.abs(best-target)?n:best,1);
 const nav=[['/','Главная','home'],['/study','Обучение','study'],['/works','Мои работы','works'],['/more','Ещё','more']];
 const iconPaths={
   home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
@@ -27,11 +30,14 @@ const iconPaths={
 };
 const navIcon=name=>'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+iconPaths[name]+'</svg>';
 function toast(message){document.querySelector('.toast')?.remove();const el=document.createElement('div');el.className='toast';el.role='status';el.textContent=message;document.body.append(el);setTimeout(()=>el.remove(),3500)}
-function layout(content){const r=route();app.innerHTML=`<div class="shell"><main class="main"><header class="top"><a class="brand" href="#/" aria-label="FORMA / LAB — главная">FORMA <span>/ LAB</span></a><div class="top-actions"><button class="chat-toggle" id="chat-toggle" aria-label="Открыть чат курса"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v12H10l-5 3v-3H4zM8 10h8M8 13.5h5"/></svg><span>Чат</span></button><a class="link" href="#/settings" aria-label="Настройки">Настройки</a></div></header>${content}</main><nav class="nav" aria-label="Основная навигация">${nav.map(([url,label,icon])=>`<a href="#${url}" class="${(r===url||((r==='/program'||r.startsWith('/week/'))&&url==='/study'))?'active':''}" ${(r===url||((r==='/program'||r.startsWith('/week/'))&&url==='/study'))?'aria-current="page"':''}>${navIcon(icon)}<span>${label}</span></a>`).join('')}</nav><div id="chat-host"></div></div>`;document.querySelector('#chat-toggle').onclick=()=>openChat(false)}
-function home(){layout(homeView({avatarMarkup}));mountScene(document.querySelector('[data-scene]'))}
-function study(){
-  const n=state.current,w=week(n),m=mod(n),done=complete();
+let stopScene=()=>{};
+function layout(content){stopScene();stopScene=()=>{};const r=route();app.innerHTML=`<div class="shell"><main class="main"><header class="top"><a class="brand" href="#/" aria-label="FORMA / LAB — главная">FORMA <span>/ LAB</span></a><div class="top-actions"><button class="chat-toggle" id="chat-toggle" aria-label="Открыть чат курса"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v12H10l-5 3v-3H4zM8 10h8M8 13.5h5"/></svg><span>Чат</span></button><a class="link" href="#/settings" aria-label="Настройки">Настройки</a></div></header>${content}</main><nav class="nav" aria-label="Основная навигация">${nav.map(([url,label,icon])=>`<a href="#${url}" class="${(r===url||((r==='/program'||r.startsWith('/week/'))&&url==='/study'))?'active':''}" ${(r===url||((r==='/program'||r.startsWith('/week/'))&&url==='/study'))?'aria-current="page"':''}>${navIcon(icon)}<span>${label}</span></a>`).join('')}</nav><div id="chat-host"></div></div>`;document.querySelector('#chat-toggle').onclick=()=>openChat(false)}
+function home(){layout(homeView({avatarMarkup}));stopScene=mountScene(document.querySelector('[data-scene]'))}
+function study(notice=''){
+  const n=nearestAvailableWeek(state.current),w=week(n),m=mod(n),done=complete();
+  if(!notice&&n!==state.current)notice=`Неделя ${state.current} пока недоступна. Показана ближайшая доступная — неделя ${n}.`;
   layout(`<div class="study-page">
+    ${notice?`<p class="access-notice" role="status">${escape(notice)}</p>`:''}
     <section class="study-feature">
       <div class="study-feature-meta"><span>Неделя ${n} из 28</span><span class="study-status">${escape(status(n))}</span></div>
       <p class="study-module">Модуль ${m.number}. ${escape(m.name)}</p>
@@ -45,10 +51,14 @@ function study(){
     <section class="study-outline" aria-label="Учебный план">
       <div class="study-outline-head"><h2>Все занятия</h2><span>7 модулей · 28 недель</span></div>
       <p class="study-note">Полный материал пока доступен для первой недели. Для остальных занятий показан план практики.</p>
-      ${modules.map(module=>`<details class="module" ${module.number===m.number?'open':''}>
-        <summary><span class="module-number">${String(module.number).padStart(2,'0')}</span><div><h2>${escape(module.name)}</h2><p>Недели ${module.start}–${module.end} · ${escape(module.goal)}</p></div></summary>
-        <div class="module-weeks">${module.weeks.map(item=>`<div class="week"><a href="#/week/${item.number}"><b>Неделя ${item.number}. ${escape(item.topic)}</b><small>${escape(item.practice)}</small><span class="tag">${item.number===n?'Текущая · ':''}${escape(status(item.number))}</span></a></div>`).join('')}</div>
-      </details>`).join('')}
+      ${modules.map(module=>{
+        const number=String(module.number).padStart(2,'0');
+        if(!moduleUnlocked(module.number))return `<div class="module module-locked"><div class="module-locked-label"><span class="module-number">${number}</span><h2>${escape(module.name)}</h2><svg class="module-lock" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div></div>`;
+        return `<details class="module" ${module.number===m.number?'open':''}>
+          <summary><span class="module-number">${number}</span><div><h2>${escape(module.name)}</h2><p>Недели ${module.start}–${module.end} · ${escape(module.goal)}</p></div></summary>
+          <div class="module-weeks">${module.weeks.map(item=>`<div class="week"><a href="#/week/${item.number}"><b>Неделя ${item.number}. ${escape(item.topic)}</b><small>${escape(item.practice)}</small><span class="tag">${item.number===n?'Текущая · ':''}${escape(status(item.number))}</span></a></div>`).join('')}</div>
+        </details>`;
+      }).join('')}
     </section>
   </div>`);
 }
@@ -99,5 +109,5 @@ setInterval(()=>{
   if(shown.length>count)box.insertAdjacentHTML('beforeend',shown.slice(count).map((x,i)=>chatItem(x,shown[count+i-1])).join(''));
   if(nearBottom)box.scrollTop=box.scrollHeight;
 },90000);
-function render(){const r=route();if(r==='/')home();else if(r==='/study'||r==='/program')study();else if(r.startsWith('/week/'))weekPage(+r.split('/')[2]);else if(r==='/calendar')calendar();else if(r==='/works')works();else if(r==='/progress')progress();else if(r==='/settings')settings();else more();chatOpen=false;window.scrollTo(0,0)}
+function render(){const r=route();if(r==='/')home();else if(r==='/study'||r==='/program')study();else if(r.startsWith('/week/')){const n=+r.split('/')[2];if(!week(n))weekPage(n);else if(!weekUnlocked(n)){const locked=mod(n);history.replaceState(null,'','#/study');study(`Модуль ${String(locked.number).padStart(2,'0')} пока закрыт. Заверши все четыре недели предыдущего модуля. Показана ближайшая доступная неделя ${nearestAvailableWeek(n)}.`)}else weekPage(n)}else if(r==='/calendar')calendar();else if(r==='/works')works();else if(r==='/progress')progress();else if(r==='/settings')settings();else more();chatOpen=false;window.scrollTo(0,0)}
 addEventListener('hashchange',render);render();
