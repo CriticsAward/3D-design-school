@@ -1,5 +1,5 @@
 export function mountScene(host) {
-  if (!host || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!host || matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData || (navigator.deviceMemory && navigator.deviceMemory<=2)) return;
   const canvas=document.createElement('canvas'); canvas.className='scene-canvas'; canvas.setAttribute('aria-hidden','true');
   const gl=canvas.getContext('webgl',{alpha:false,antialias:false,powerPreference:'low-power'}); if(!gl)return;
   const vert='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
@@ -19,7 +19,7 @@ export function mountScene(host) {
 'vec3 normal(vec3 p){vec2 e=vec2(.003,0.);return normalize(vec3(map(p+e.xyy).x-map(p-e.xyy).x,map(p+e.yxy).x-map(p-e.yxy).x,map(p+e.yyx).x-map(p-e.yyx).x));}',
 'float shadow(vec3 p,vec3 l){float s=1.,t=.04;for(int i=0;i<26;i++){float h=map(p+l*t).x;s=min(s,12.*h/t);t+=clamp(h,.035,.24);if(h<.001||t>8.)break;}return clamp(s,.20,1.);}',
 'void main(){',
-'vec2 uv=(gl_FragCoord.xy-.5*resolution)/min(resolution.x,resolution.y);uv.y+=mobile*.25;',
+'vec2 uv=(gl_FragCoord.xy-.5*resolution)/min(resolution.x,resolution.y);uv.y-=mobile*.25;',
 'vec3 eye=vec3(3.3,2.35,mix(6.7,8.7,mobile)),target=vec3(0.,.88,0.);',
 'vec3 ww=normalize(target-eye),uu=normalize(cross(ww,vec3(0.,1.,0.))),vv=cross(uu,ww);',
 'vec3 rd=normalize(uv.x*uu+uv.y*vv+1.6*ww),ro=eye;',
