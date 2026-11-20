@@ -33,8 +33,8 @@ function toast(message){document.querySelector('.toast')?.remove();const el=docu
 let stopScene=()=>{};
 function layout(content){stopScene();stopScene=()=>{};const r=route();app.innerHTML=`<div class="shell"><main class="main"><header class="top"><a class="brand" href="#/" aria-label="FORMA / LAB — главная">FORMA <span>/ LAB</span></a><div class="top-actions"><button class="chat-toggle" id="chat-toggle" aria-label="Открыть чат курса"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v12H10l-5 3v-3H4zM8 10h8M8 13.5h5"/></svg><span>Чат</span></button><a class="link" href="#/settings" aria-label="Настройки">Настройки</a></div></header>${content}</main><nav class="nav" aria-label="Основная навигация">${nav.map(([url,label,icon])=>`<a href="#${url}" class="${(r===url||((r==='/program'||r.startsWith('/week/'))&&url==='/study'))?'active':''}" ${(r===url||((r==='/program'||r.startsWith('/week/'))&&url==='/study'))?'aria-current="page"':''}>${navIcon(icon)}<span>${label}</span></a>`).join('')}</nav><div id="chat-host"></div></div>`;document.querySelector('#chat-toggle').onclick=()=>openChat(false)}
 function home(){layout(homeView({avatarMarkup}));stopScene=mountScene(document.querySelector('[data-scene]'))}
-function study(notice=''){
-  const n=nearestAvailableWeek(state.current),w=week(n),m=mod(n),done=complete();
+function study(notice='',target=state.current){
+  const n=nearestAvailableWeek(target),w=week(n),m=mod(n),done=complete();
   if(!notice&&n!==state.current)notice=`Неделя ${state.current} пока недоступна. Показана ближайшая доступная — неделя ${n}.`;
   layout(`<div class="study-page">
     ${notice?`<p class="access-notice" role="status">${escape(notice)}</p>`:''}
@@ -109,5 +109,5 @@ setInterval(()=>{
   if(shown.length>count)box.insertAdjacentHTML('beforeend',shown.slice(count).map((x,i)=>chatItem(x,shown[count+i-1])).join(''));
   if(nearBottom)box.scrollTop=box.scrollHeight;
 },90000);
-function render(){const r=route();if(r==='/')home();else if(r==='/study'||r==='/program')study();else if(r.startsWith('/week/')){const n=+r.split('/')[2];if(!week(n))weekPage(n);else if(!weekUnlocked(n)){const locked=mod(n);history.replaceState(null,'','#/study');study(`Модуль ${String(locked.number).padStart(2,'0')} пока закрыт. Заверши все четыре недели предыдущего модуля. Показана ближайшая доступная неделя ${nearestAvailableWeek(n)}.`)}else weekPage(n)}else if(r==='/calendar')calendar();else if(r==='/works')works();else if(r==='/progress')progress();else if(r==='/settings')settings();else more();chatOpen=false;window.scrollTo(0,0)}
+function render(){const r=route();if(r==='/')home();else if(r==='/study'||r==='/program')study();else if(r.startsWith('/week/')){const n=+r.split('/')[2];if(!week(n))weekPage(n);else if(!weekUnlocked(n)){const locked=mod(n),available=nearestAvailableWeek(n);history.replaceState(null,'','#/study');study(`Модуль ${String(locked.number).padStart(2,'0')} пока закрыт. Заверши все четыре недели предыдущего модуля. Показана ближайшая доступная неделя ${available}.`,n)}else weekPage(n)}else if(r==='/calendar')calendar();else if(r==='/works')works();else if(r==='/progress')progress();else if(r==='/settings')settings();else more();chatOpen=false;window.scrollTo(0,0)}
 addEventListener('hashchange',render);render();
