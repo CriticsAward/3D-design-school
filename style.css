@@ -456,23 +456,20 @@ p{line-height:1.65}
 .calendar-group .panel{margin:7px 0 15px}
 .nav{display:none}
 .chat-toggle{
-  position:fixed;
-  right:26px;
-  bottom:24px;
-  z-index:11;
-  min-width:62px;
-  height:62px;
-  padding:0 13px;
-  border:1px solid #e8ece5;
+  display:grid;
+  place-items:center;
+  flex:0 0 44px;
+  width:44px;
+  min-width:44px;
+  height:44px;
+  padding:0;
+  border:1px solid var(--signal);
   border-radius:0;
-  background:var(--signal);
-  color:#fff;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.04em;
-  box-shadow:0 8px 22px #0002;
+  background:transparent;
+  color:var(--signal);
 }
-.chat-toggle:hover{background:#104943}
+.chat-toggle:hover{background:var(--signal);color:#fff}
+.chat-toggle svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .chat{
   position:fixed;
   z-index:20;
@@ -552,7 +549,7 @@ p{line-height:1.65}
   .main{padding:24px 23px calc(128px + env(safe-area-inset-bottom));max-width:none}
   .top{
     justify-content:space-between;
-    align-items:flex-start;
+    align-items:center;
     min-height:57px;
     margin-bottom:28px;
     padding-bottom:19px;
@@ -601,13 +598,6 @@ p{line-height:1.65}
   }
   .nav a.active{color:#f7f9f2}
   .nav a.active span{color:#8bd3b6}
-  .chat-toggle{
-    bottom:calc(84px + env(safe-area-inset-bottom));
-    right:17px;
-    width:57px;
-    min-width:57px;
-    height:57px;
-  }
   .chat{
     bottom:calc(70px + env(safe-area-inset-bottom));
     left:0;
@@ -661,7 +651,6 @@ p{line-height:1.65}
   .split{grid-template-columns:1fr}
   .panel{padding:22px 19px}
   .calendar-upcoming{padding:22px}
-  .chat-toggle{width:53px;min-width:53px;height:53px}
 }
 @media(max-width:360px){
   .main{padding-left:15px;padding-right:15px}
