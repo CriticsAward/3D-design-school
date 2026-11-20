@@ -2,7 +2,7 @@ import modules from './curriculum.json' with {type:'json'};
 import {availableMessages,avatarMarkup} from './chat.js?v=5';
 import {statuses,initial,normalize,datesFor,localDate} from './state.js?v=2';
 import {lessonOne} from './lesson-one.js?v=2';
-import {homeView} from './home-view.js?v=7';
+import {homeView} from './home-view.js?v=8';
 import {mountScene} from './scene.js';
 
 const KEY='forma-lab-v1';
