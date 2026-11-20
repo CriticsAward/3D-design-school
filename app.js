@@ -1,8 +1,8 @@
 import modules from './curriculum.json' with {type:'json'};
-import {availableMessages} from './chat.js';
-import {statuses,initial,normalize,datesFor,localDate} from './state.js';
-import {lessonOne} from './lesson-one.js';
-import {homeView} from './home-view.js';
+import {availableMessages} from './chat.js?v=2';
+import {statuses,initial,normalize,datesFor,localDate} from './state.js?v=2';
+import {lessonOne} from './lesson-one.js?v=2';
+import {homeView} from './home-view.js?v=2';
 
 const KEY='forma-lab-v1';
 let state;
