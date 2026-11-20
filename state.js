@@ -1,20 +1,24 @@
 export const statuses=['Не начато','В работе','На проверке','Требует доработки','Зачтено'];
 export const projectDurationsWeeks=Object.freeze([3,3,3,3,3,3,4]);
+export const projectDurationsDays=Object.freeze([21,25,25,25,28,28,32]);
 export const initial=()=>({version:1,start:'',current:1,statuses:{},dates:{},notes:{},works:[],chat:{seen:5,auto:true},lessonSection:'theory',training:null});
 const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
 const isoDate=x=>typeof x==='string'&&(x===''||(/^\d{4}-\d{2}-\d{2}$/.test(x)&&!Number.isNaN(new Date(x+'T12:00:00').getTime())&&localDate(x)===x));
 function validTraining(raw){
-  if(!record(raw)||raw.version!==1||typeof raw.startedAt!=='string'||Number.isNaN(Date.parse(raw.startedAt))||!isoDate(raw.startDate)||!raw.startDate||!Array.isArray(raw.durationsWeeks)||raw.durationsWeeks.length!==7||raw.durationsWeeks.some(n=>!Number.isInteger(n)||n<2||n>12))return null;
+  if(!record(raw)||raw.version!==1||typeof raw.startedAt!=='string'||Number.isNaN(Date.parse(raw.startedAt))||!isoDate(raw.startDate)||!raw.startDate)return null;
+  const durationsDays=Array.isArray(raw.durationsDays)&&raw.durationsDays.length===7&&raw.durationsDays.every(n=>Number.isInteger(n)&&n>=14&&n<=60)?[...raw.durationsDays]:null;
+  const durationsWeeks=Array.isArray(raw.durationsWeeks)&&raw.durationsWeeks.length===7&&raw.durationsWeeks.every(n=>Number.isInteger(n)&&n>=2&&n<=12)?[...raw.durationsWeeks]:null;
+  if(!durationsDays&&!durationsWeeks)return null;
   const earlyStarts={};
   if(record(raw.earlyStarts)){
     let previous=raw.startDate;
     for(let number=2;number<=7;number++){
-      const planned=localDate(previous,raw.durationsWeeks[number-2]*7),candidate=raw.earlyStarts[number];
+      const planned=localDate(previous,durationsDays?.[number-2]??durationsWeeks[number-2]*7),candidate=raw.earlyStarts[number];
       if(isoDate(candidate)&&candidate&&candidate>=previous&&candidate<planned)earlyStarts[number]=candidate;
       previous=earlyStarts[number]||planned;
     }
   }
-  return {version:1,startedAt:raw.startedAt,startDate:raw.startDate,durationsWeeks:[...raw.durationsWeeks],earlyStarts};
+  return {version:1,startedAt:raw.startedAt,startDate:raw.startDate,...(durationsDays?{durationsDays}:{durationsWeeks}),earlyStarts};
 }
 export function normalize(raw){
   if(!record(raw)||raw.version!==1||!Number.isInteger(raw.current)||raw.current<1||raw.current>28||!isoDate(raw.start)||!record(raw.statuses)||!record(raw.dates)||!record(raw.notes)||!Array.isArray(raw.works)||!record(raw.chat))throw Error('Неверный формат сохранения');
@@ -38,9 +42,9 @@ export function localToday(date=new Date()){
 export function projectSchedule(training){
   if(!training)return [];
   let previous=training.startDate;
-  return training.durationsWeeks.map((weeks,index)=>{
+  return (training.durationsDays||training.durationsWeeks.map(weeks=>weeks*7)).map((days,index)=>{
     const number=index+1,start=training.earlyStarts?.[number]||previous;
-    const soft=localDate(start,weeks*7),hard=localDate(soft,14);
+    const soft=localDate(start,days),hard=localDate(soft,14);
     previous=soft;
     return {number,start,soft,hard};
   });

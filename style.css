@@ -304,6 +304,8 @@ body{overflow-x:hidden}
 .home-continue{display:flex;justify-content:space-between;min-height:60px;width:min(100%,290px);margin-top:34px;background:#eaf1e8;color:#18291d;border-color:#eaf1e8}
 .home-continue:hover{background:#fff;color:#18291d;border-color:#fff}
 .home-continue span{font-size:21px}
+.home-lesson{display:grid;gap:6px;max-width:420px;margin-top:22px;padding:13px 15px;border-left:2px solid #b6c8b5;background:#122019a8;color:#f0f5ed;backdrop-filter:blur(8px)}
+.home-lesson span,.home-lesson small{font-size:12px;color:#c6d3c7}.home-lesson b{font-size:14px;line-height:1.45;font-weight:600}
 .peer-reactions{position:absolute;z-index:1;inset:0;pointer-events:none;overflow:hidden}
 .peer-reaction{position:absolute;display:flex;align-items:center;gap:8px;opacity:0;animation:peer-drift 15s ease-in-out infinite}
 .peer-reaction .avatar{width:36px;height:36px;flex:0 0 36px;border:1px solid #f0f8efb8}
@@ -374,11 +376,10 @@ body{overflow-x:hidden}
  .hero-copy p{font-size:15px}
  .home-continue{width:min(100%,370px);margin-top:21px;min-height:55px}
  .reaction-five,.reaction-six,.reaction-seven,.reaction-eight,.reaction-nine,.reaction-ten,.reaction-eleven,.reaction-twelve,.reaction-thirteen,.reaction-fourteen{display:none}
- .reaction-one,.reaction-two,.reaction-three,.reaction-four{animation-name:soft-appear-mobile;right:5%}
- .reaction-one{top:13%;animation-delay:-2s}
- .reaction-two{top:19%;animation-delay:-15s}
- .reaction-three{top:25%;animation-delay:-28s}
- .reaction-four{top:31%;animation-delay:-41s}
+ .reaction-one,.reaction-two{animation-name:soft-appear-mobile;right:5%;animation-duration:36s}
+ .reaction-one{top:11%;animation-delay:-2s}
+ .reaction-two{top:22%;animation-delay:-20s}
+ .reaction-three,.reaction-four{display:none}
  .chat{top:calc(env(safe-area-inset-top) + 12px);bottom:auto;left:10px;right:10px;width:auto;height:min(650px,calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px));max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px);overflow:hidden}
  .study-feature{padding:34px 29px;border-radius:23px}
  .study-feature h1{font-size:clamp(40px,8vw,61px)}
