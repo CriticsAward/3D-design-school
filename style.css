@@ -304,7 +304,7 @@ body{overflow-x:hidden}
 .home-continue{display:flex;justify-content:space-between;min-height:60px;width:min(100%,290px);margin-top:34px;background:#eaf1e8;color:#18291d;border-color:#eaf1e8}
 .home-continue:hover{background:#fff;color:#18291d;border-color:#fff}
 .home-continue span{font-size:21px}
-.peer-reactions{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.peer-reactions{position:absolute;z-index:1;inset:0;pointer-events:none;overflow:hidden}
 .peer-reaction{position:absolute;display:flex;align-items:center;gap:8px;opacity:0;animation:peer-drift 15s ease-in-out infinite}
 .peer-reaction .avatar{width:36px;height:36px;flex:0 0 36px;border:1px solid #f0f8efb8}
 .peer-bubble{display:grid;place-items:center;height:32px;min-width:35px;padding:0 10px;border-radius:15px 15px 15px 5px;background:#f2f7ee;color:#1b3122;font-size:13px;box-shadow:0 5px 24px #0004}
@@ -359,6 +359,7 @@ body{overflow-x:hidden}
  .top-actions .link{font-size:12px}
  .top-actions .calendar-toggle,.top-actions .chat-toggle,.top-actions .settings-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;min-width:44px;height:44px;min-height:44px;padding:0;border:1px solid #b8c9bd;border-radius:14px;background:#f8fbf6;color:#253d2b}
  .top-actions .calendar-toggle svg,.top-actions .chat-toggle svg,.top-actions .settings-toggle svg{display:block;width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+ .top-actions .settings-toggle svg{width:20px;height:20px}
  .top-actions .calendar-toggle span,.top-actions .chat-toggle span,.top-actions .settings-toggle span{display:none}
  .main:has(.home-page) .top-actions .calendar-toggle,.main:has(.home-page) .top-actions .chat-toggle,.main:has(.home-page) .top-actions .settings-toggle{color:#f2f7ef;background:#16271cae;border-color:#ffffff69;backdrop-filter:blur(13px)}
  .nav{width:calc(100vw - 24px);max-width:460px;bottom:calc(9px + env(safe-area-inset-bottom))}
@@ -372,9 +373,12 @@ body{overflow-x:hidden}
  .hero-copy h1{font-size:clamp(47px,11vw,72px)}
  .hero-copy p{font-size:15px}
  .home-continue{width:min(100%,370px);margin-top:21px;min-height:55px}
- .reaction-two,.reaction-four{display:none}
- .reaction-one{top:19%;right:7%}
- .reaction-three{top:41%;right:12%;bottom:auto}
+ .reaction-five,.reaction-six,.reaction-seven,.reaction-eight,.reaction-nine,.reaction-ten,.reaction-eleven,.reaction-twelve,.reaction-thirteen,.reaction-fourteen{display:none}
+ .reaction-one,.reaction-two,.reaction-three,.reaction-four{animation-name:soft-appear-mobile;right:5%}
+ .reaction-one{top:13%;animation-delay:-2s}
+ .reaction-two{top:19%;animation-delay:-15s}
+ .reaction-three{top:25%;animation-delay:-28s}
+ .reaction-four{top:31%;animation-delay:-41s}
  .chat{top:calc(env(safe-area-inset-top) + 12px);bottom:auto;left:10px;right:10px;width:auto;height:min(650px,calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px));max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px);overflow:hidden}
  .study-feature{padding:34px 29px;border-radius:23px}
  .study-feature h1{font-size:clamp(40px,8vw,61px)}
@@ -392,8 +396,6 @@ body{overflow-x:hidden}
  .hero{padding:103px 19px calc(123px + env(safe-area-inset-bottom))}
  .hero-copy h1{font-size:clamp(43px,12.5vw,60px);margin-bottom:16px}
  .hero-copy p{font-size:14px}
- .reaction-one{right:5%}
- .reaction-three{right:8%}
  .peer-reaction .avatar{width:30px;height:30px;flex-basis:30px}
  .study-feature{padding:27px 21px;border-radius:21px}
  .study-feature-meta{font-size:12px}
@@ -466,8 +468,9 @@ body{overflow-x:hidden}
 .calendar-popup-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.calendar-popup-head .eyebrow{margin:0 0 3px}.calendar-popup-head h2{margin:0;font-size:30px;letter-spacing:-.055em}.calendar-close{width:44px;height:44px;border:0;border-radius:50%;background:#e8eee7;color:#29362d;font-size:28px;line-height:1}
 .calendar-popup .calendar-month-head{margin-bottom:15px}.calendar-popup .calendar-month-head h3{margin:0;text-transform:capitalize;font-size:20px;letter-spacing:-.04em}.calendar-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;color:#66736a;font-size:11px}.calendar-legend span{display:inline-flex;align-items:center;gap:6px}.dot.start,.dot.planned{background:#648e74}.dot.soft{background:#d58c36}.dot.hard,.dot.final{background:#b9534b}
 @keyframes soft-appear{0%,6%,100%{opacity:0;transform:translateY(7px)}12%,28%{opacity:1}34%,99%{opacity:0;transform:translateY(-7px)}}
-.reaction-one,.reaction-two,.reaction-three,.reaction-four,.reaction-five,.reaction-six,.reaction-seven,.reaction-eight,.reaction-nine,.reaction-ten,.reaction-eleven,.reaction-twelve,.reaction-thirteen,.reaction-fourteen{animation-name:soft-appear;animation-duration:54s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
-.reaction-one{top:23%;right:15%;animation-delay:-2s}.reaction-two{top:47%;right:8%;animation-delay:-13s}.reaction-three{bottom:25%;right:30%;animation-delay:-24s}.reaction-four{top:19%;right:34%;animation-delay:-35s}.reaction-five{top:37%;right:22%;animation-delay:-6s}.reaction-six{bottom:37%;right:11%;animation-delay:-17s}.reaction-seven{top:60%;right:37%;animation-delay:-28s}.reaction-eight{top:29%;right:42%;animation-delay:-39s}.reaction-nine{top:52%;right:27%;animation-delay:-10s}.reaction-ten{bottom:18%;right:18%;animation-delay:-21s}.reaction-eleven{top:16%;right:24%;animation-delay:-32s}.reaction-twelve{bottom:44%;right:39%;animation-delay:-43s}.reaction-thirteen{top:42%;right:45%;animation-delay:-4s}.reaction-fourteen{bottom:28%;right:43%;animation-delay:-47s}
+ .reaction-one,.reaction-two,.reaction-three,.reaction-four,.reaction-five,.reaction-six,.reaction-seven,.reaction-eight,.reaction-nine,.reaction-ten,.reaction-eleven,.reaction-twelve,.reaction-thirteen,.reaction-fourteen{animation-name:soft-appear;animation-duration:54s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.reaction-one{top:17%;right:4%;animation-delay:-2s}.reaction-two{top:29%;right:9%;animation-delay:-13s}.reaction-three{top:42%;right:12%;animation-delay:-24s}.reaction-four{top:55%;right:6%;animation-delay:-35s}.reaction-five{top:23%;right:11%;animation-delay:-6s}.reaction-six{top:36%;right:5%;animation-delay:-17s}.reaction-seven{top:49%;right:13%;animation-delay:-28s}.reaction-eight{top:62%;right:8%;animation-delay:-39s}.reaction-nine{top:18%;right:3%;animation-delay:-10s}.reaction-ten{top:31%;right:10%;animation-delay:-21s}.reaction-eleven{top:44%;right:7%;animation-delay:-32s}.reaction-twelve{top:57%;right:12%;animation-delay:-43s}.reaction-thirteen{top:26%;right:4%;animation-delay:-4s}.reaction-fourteen{top:39%;right:9%;animation-delay:-47s}
+@keyframes soft-appear-mobile{0%,6%,100%{opacity:0;transform:translate3d(0,4px,0)}12%,28%{opacity:1}34%,99%{opacity:0;transform:translate3d(-7px,-5px,0)}}
 @media(max-width:800px){.calendar-toggle{padding:0 10px}.calendar-focus article{align-items:flex-start;flex-direction:column}.calendar-focus .btn{min-height:45px}.calendar-focus p span{display:block;margin:6px 0 0}.timeline-project{grid-template-columns:38px minmax(0,1fr)}}
 @media(max-width:520px){.calendar-toggle{width:43px;justify-content:center;padding:0}.calendar-toggle span{display:none}.calendar-toggle svg{width:20px;height:20px}.calendar-month{padding:18px 12px}.month-grid{gap:1px}.month-day{min-height:46px;border-radius:10px;font-size:12px}.weekday{font-size:10px}.calendar-selected p{display:flex}.calendar-focus{padding:23px 19px}.timeline-project{grid-template-columns:27px minmax(0,1fr);gap:10px;padding:20px 0}.timeline-head{align-items:flex-start;flex-direction:column;gap:8px}.timeline-content>p{line-height:1.6}.timeline-actions{gap:8px 15px}.early-start{align-items:flex-start;flex-direction:column;padding:19px}.early-start .btn{width:100%}.project-preview{grid-template-columns:40px minmax(0,1fr)}}
 @media(max-width:800px){.calendar-backdrop{align-items:start;padding:calc(env(safe-area-inset-top) + 12px) 10px calc(12px + env(safe-area-inset-bottom))}.calendar-popup{max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px)}}
