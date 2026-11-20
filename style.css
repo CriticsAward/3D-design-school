@@ -709,3 +709,5 @@ p{line-height:1.65}
 @media(prefers-reduced-motion:reduce){
   .hero-copy,.hero-art,.chat,.message{animation:none!important;opacity:1!important;transform:none!important}.peer-reaction{animation:none!important;opacity:.8!important}.reaction-three,.reaction-four{display:none!important}
 }
+
+.messages{scrollbar-color:#536359 #18211d;scrollbar-width:thin}.messages::-webkit-scrollbar{width:8px}.messages::-webkit-scrollbar-track{background:#18211d}.messages::-webkit-scrollbar-thumb{border:2px solid #18211d;border-radius:999px;background:#536359}

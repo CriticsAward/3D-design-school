@@ -34,6 +34,6 @@ const authors = [
 ];
 export const messages = conversations.flatMap((group,stage)=>group.map((body,index)=>({
   id:`${stage}-${index}`, week:weeks[stage], person:authors[stage][index], role:authors[stage][index]==='Марина'?'Наставник':'', body,
-  time:`${String(10+Math.floor(index/5)).padStart(2,'0')}:${String(index*11%60).padStart(2,'0')}`
+  time:`${String(10+Math.floor(index/5)).padStart(2,'0')}:${String(index%5*11).padStart(2,'0')}`
 })));
 export const availableMessages = currentWeek => messages.filter(message => message.week <= currentWeek);
