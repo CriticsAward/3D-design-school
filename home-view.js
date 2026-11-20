@@ -1,5 +1,5 @@
 export function homeView({avatarMarkup}){
-  const reactions=[['Алина','🙂','reaction-one'],['Макс','🔥','reaction-two'],['Катя','Ого','reaction-three'],['Игорь','👏','reaction-four']];
+  const reactions=[['Алина','🙂','reaction-one'],['Макс','🔥','reaction-two'],['Катя','Ого','reaction-three'],['Игорь','👏','reaction-four'],['Марина','✨','reaction-five'],['Денис','Да!','reaction-six'],['Лера','💡','reaction-seven'],['Алина','Класс','reaction-eight'],['Катя','💚','reaction-nine'],['Макс','👍','reaction-ten'],['Игорь','Точно','reaction-eleven'],['Лера','🔥','reaction-twelve'],['Марина','Ого','reaction-thirteen'],['Денис','👏','reaction-fourteen']];
   return `<div class="home-page">
     <section class="hero" aria-label="Добро пожаловать в FORMA / LAB">
       <div class="hero-media" data-scene>
