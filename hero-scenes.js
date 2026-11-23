@@ -2,7 +2,7 @@ import {projectComplete} from './state.js?v=4';
 
 export const heroScenes=Object.freeze({
   1:Object.freeze({poster:'./assets/hero-scenes/01.webp',mobilePoster:'./assets/hero-scenes/01-mobile.webp',video:'./assets/hero-scenes/01.mp4',alt:'Куб с мягкими фасками, металлическая сфера и стеклянный цилиндр на студийной платформе'}),
-  2:Object.freeze({poster:'./assets/hero-scenes/02.webp',video:'./assets/hero-scenes/02.mp4',alt:'Настольный светильник с керамическим основанием, металлической дугой и отражателем'}),
+  2:Object.freeze({poster:'./assets/hero-scenes/02.webp',video:'./assets/hero-scenes/02.mp4',mirrorX:true,alt:'Настольный светильник с керамическим основанием, металлической дугой и отражателем'}),
   3:Object.freeze({poster:'./assets/hero-scenes/03.webp',video:'./assets/hero-scenes/03.mp4',alt:'Флакон с тёмно-зелёным стеклом, латунной крышкой и фирменной этикеткой'}),
   4:Object.freeze({poster:'./assets/hero-scenes/04.webp',video:'./assets/hero-scenes/04.mp4',alt:'Портативная акустическая колонка с тканевой решёткой, ручкой и металлическим регулятором'}),
   5:Object.freeze({poster:'./assets/hero-scenes/05.webp',video:'./assets/hero-scenes/05.mp4',alt:'Наручные часы с эмалевым безелем, циферблатом, кожаным ремешком и точной фурнитурой'}),

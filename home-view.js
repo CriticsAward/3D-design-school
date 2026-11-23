@@ -2,7 +2,7 @@ export function homeView({avatarMarkup,lessonMarkup='',heroScene,sceneTest=false
   const reactions=[['Алина','🙂','reaction-one'],['Макс','🔥','reaction-two'],['Катя','Ого','reaction-three'],['Игорь','👏','reaction-four'],['Марина','✨','reaction-five'],['Денис','Да!','reaction-six'],['Лера','💡','reaction-seven'],['Алина','Класс','reaction-eight'],['Катя','💚','reaction-nine'],['Макс','👍','reaction-ten'],['Игорь','Точно','reaction-eleven'],['Лера','🔥','reaction-twelve'],['Марина','Ого','reaction-thirteen'],['Денис','👏','reaction-fourteen']];
   return `<div class="home-page">
     <section class="hero" aria-label="Добро пожаловать в FORMA / LAB">
-      <div class="hero-media" data-scene>
+      <div class="hero-media${heroScene.mirrorX?' scene-mirror-x':''}" data-scene>
         <picture class="hero-picture">${heroScene.mobilePoster?`<source media="(max-width: 800px)" srcset="${heroScene.mobilePoster}">`:''}<img class="hero-art" src="${heroScene.poster}" width="1280" height="800" alt="${heroScene.alt}" fetchpriority="high"></picture>
         <video class="hero-motion" muted playsinline loop preload="none" poster="${heroScene.poster}" aria-hidden="true"></video>
       </div>
