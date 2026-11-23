@@ -1,9 +1,10 @@
-export function homeView({avatarMarkup,lessonMarkup=''}){
+export function homeView({avatarMarkup,lessonMarkup='',heroScene}){
   const reactions=[['Алина','🙂','reaction-one'],['Макс','🔥','reaction-two'],['Катя','Ого','reaction-three'],['Игорь','👏','reaction-four'],['Марина','✨','reaction-five'],['Денис','Да!','reaction-six'],['Лера','💡','reaction-seven'],['Алина','Класс','reaction-eight'],['Катя','💚','reaction-nine'],['Макс','👍','reaction-ten'],['Игорь','Точно','reaction-eleven'],['Лера','🔥','reaction-twelve'],['Марина','Ого','reaction-thirteen'],['Денис','👏','reaction-fourteen']];
   return `<div class="home-page">
     <section class="hero" aria-label="Добро пожаловать в FORMA / LAB">
       <div class="hero-media" data-scene>
-        <img class="hero-art" src="./assets/hero-first-lesson.webp" width="1586" height="992" alt="Предметная композиция из куба, металлического шара и стеклянного цилиндра" fetchpriority="high">
+        <img class="hero-art" src="${heroScene.poster}" width="1280" height="800" alt="${heroScene.alt}" fetchpriority="high">
+        <video class="hero-motion" muted playsinline loop preload="none" poster="${heroScene.poster}" aria-hidden="true"></video>
       </div>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-copy">
