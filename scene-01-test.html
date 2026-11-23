@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111413">
+  <meta name="description" content="Тестовая сцена модуля 01 FORMA / LAB — предметная композиция с деликатным движением.">
+  <title>Сцена 01 — FORMA / LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./scene-01-test.css?v=1">
+  <script src="./scene-01-test.js?v=1" defer></script>
+</head>
+<body>
+  <main class="stage" data-motion="on">
+    <picture class="visual" role="img" aria-label="Фасованный куб из тёмной керамики, отражающая металлическая сфера и прозрачный стеклянный цилиндр на каменной платформе">
+      <source media="(max-width:520px)" srcset="./assets/hero-scenes/test-01/mobile.webp">
+      <img class="visual-image" src="./assets/hero-scenes/test-01/desktop.webp" width="1672" height="941" alt="" fetchpriority="high">
+    </picture>
+    <div class="shade" aria-hidden="true"></div>
+    <header class="top">
+      <a class="brand" href="./#/" aria-label="FORMA / LAB — главная">FORMA <span>/ LAB</span></a>
+      <div class="top-actions">
+        <a href="./#/calendar" aria-label="Календарь" title="Календарь"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>Календарь</span></a>
+        <a href="./#/" aria-label="Открыть чат курса на главной" title="Чат"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v12H10l-5 3v-3H4zM8 10h8M8 13.5h5"/></svg><span>Чат</span></a>
+        <a href="./#/settings" aria-label="Настройки" title="Настройки"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg><span>Настройки</span></a>
+      </div>
+    </header>
+    <div class="reactions" aria-hidden="true">
+      <span class="reaction reaction-a"><i class="avatar avatar-alina"></i><b>🙂</b></span>
+      <span class="reaction reaction-b"><i class="avatar avatar-max"></i><b>🔥</b></span>
+      <span class="reaction reaction-c"><i class="avatar avatar-katya"></i><b>Ого</b></span>
+    </div>
+    <section class="copy" aria-label="Модуль 01">
+      <p class="eyebrow">МОДУЛЬ 01 <span>/</span> АБСОЛЮТНЫЙ НОЛЬ</p>
+      <h1>Учись видеть<br>форму.</h1>
+      <p class="description">Blender, предметный дизайн и практика с первого дня.</p>
+      <div class="lesson"><span>Занятие 01 · Пространство и управление</span><b>Первый шаг в Blender</b></div>
+      <a class="continue" href="./#/study">Перейти к обучению <span aria-hidden="true">↗</span></a>
+    </section>
+    <div class="comparison" aria-label="Сравнение режимов изображения">
+      <button class="motion-toggle" type="button" aria-pressed="true">Движение: включено</button>
+      <a href="./assets/hero-scenes/test-01/desktop.webp" target="_blank" rel="noopener">Неподвижный кадр ↗</a>
+    </div>
+    <nav class="nav" aria-label="Основная навигация">
+      <a class="active" href="./#/" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Главная</span></a>
+      <a href="./#/study"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v14M3 18V4a1 1 0 0 1 1-1h5a3 3 0 0 1 3 3 3 3 0 0 1 3-3h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5a3 3 0 0 0-3 3 3 3 0 0 0-3-3H4a1 1 0 0 1-1-1z"/></svg><span>Обучение</span></a>
+      <a href="./#/works"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Мои работы</span></a>
+      <a href="./#/more"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg><span>Ещё</span></a>
+    </nav>
+  </main>
+</body>
+</html>
