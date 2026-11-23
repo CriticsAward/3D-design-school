@@ -14,7 +14,7 @@ export function mountScene(host,sceneIndex,{transition=false}={}){
   };
   const onPlaying=()=>{if(!disposed)host.classList.add('scene-live')};
   const onError=()=>{host?.classList.remove('scene-live')};
-  if(!host||!scene||!video||matchMedia('(max-width: 800px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.connection?.saveData||(navigator.deviceMemory&&navigator.deviceMemory<=2)||!video.canPlayType('video/mp4'))return release;
+  if(!host||!scene||!scene.video||!video||matchMedia('(max-width: 800px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.connection?.saveData||(navigator.deviceMemory&&navigator.deviceMemory<=2)||!video.canPlayType('video/mp4'))return release;
 
   video.addEventListener('playing',onPlaying);
   video.addEventListener('error',onError);
