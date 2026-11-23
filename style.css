@@ -478,3 +478,7 @@ body{overflow-x:hidden}
 @media(max-width:520px){.calendar-popup{padding:21px 16px;border-radius:23px}.calendar-popup .month-day{min-height:43px}.calendar-popup .calendar-selected p{font-size:12px}}
 @media(max-width:380px){.top-actions{gap:5px}.top-actions .calendar-toggle,.top-actions .chat-toggle,.top-actions .settings-toggle{width:44px;min-width:44px;height:44px;min-height:44px}.calendar-month{padding-left:8px;padding-right:8px}.month-day{min-height:42px}}
 @media(prefers-reduced-motion:reduce){.peer-reaction{opacity:0}.reaction-one{opacity:1}}
+.lesson-next{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px;padding:20px 22px;border:1px solid #d9e1d9;border-radius:16px;background:#f1f4ef}
+.lesson-next p{margin:0;color:#334139;font-weight:650}
+.lesson-next .btn{flex:0 0 auto}
+@media(max-width:520px){.lesson-next{align-items:stretch;flex-direction:column;gap:13px;padding:17px}.lesson-next .btn{width:100%;min-height:50px}}

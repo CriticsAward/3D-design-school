@@ -86,7 +86,32 @@ function study(notice='',target=state.current){
   const earlyButton=document.querySelector('#early-start');if(earlyButton)earlyButton.onclick=()=>startEarly(nextNumber);
 }
 function startEarly(number){if(!canStartEarly(number,state.training,state.statuses,localToday()))return;state.training.earlyStarts[number]=localToday();state.current=(number-1)*4+1;save();study('',state.current);toast('Следующий проект открыт')}
-function weekPage(n){const w=week(n);if(!w){location.hash='/study';return}const m=mod(n);layout(`<div class="lesson"><a class="link" href="#/study">← Обучение</a><div class="eyebrow">Модуль ${m.number} / 07 · Неделя ${n} / 28</div><h1>${n===1?'Знакомство с Blender и трёхмерным пространством':escape(w.topic)}</h1><p class="muted">${escape(w.topic)}</p>${n===1?lessonOne():`<section><h2>Предварительный план</h2><p>${escape(w.practice)}</p><h3>Ожидаемый результат</h3><p>${escape(w.result)}</p><p class="muted">Подробный урок ещё готовится. Этот план показывает маршрут, но не заменяет учебные инструкции.</p></section>`}<section><h2>Отчёт и состояние</h2><div class="fields"><label class="field">Статус<select id="lesson-status">${statuses.map(s=>`<option ${status(n)===s?'selected':''}>${s}</option>`).join('')}</select></label><label class="field">Что сделал и что стоит проверить<textarea id="lesson-note" placeholder="Сохрани наблюдения, сложности и замечания проверяющего">${escape(state.notes[n]||'')}</textarea></label></div><div class="actions"><button class="btn" id="save-lesson">Сохранить</button><button class="btn secondary" id="copy-report">Скопировать отчёт</button></div><p class="muted">Проверка проходит отдельно в ChatGPT. Статус «Зачтено» устанавливается вручную после обратной связи.</p></section></div>`);document.querySelector('#save-lesson').onclick=()=>{state.statuses[n]=document.querySelector('#lesson-status').value;state.notes[n]=document.querySelector('#lesson-note').value;save();toast('Занятие сохранено')};document.querySelector('#copy-report').onclick=async()=>{const report=`FORMA / LAB · Неделя ${n}\n${w.topic}\nСтатус: ${document.querySelector('#lesson-status').value}\nОтчёт: ${document.querySelector('#lesson-note').value}`;try{await navigator.clipboard.writeText(report);toast('Отчёт скопирован')}catch{toast('Копирование недоступно в этом браузере')}}}
+function lessonNextAction(n){
+  if(status(n)!=='Зачтено')return '';
+  if(n===28)return '<div class="lesson-next" role="status"><p>Все занятия зачтены. Программа завершена.</p><a class="btn" href="#/progress">Мой прогресс →</a></div>';
+  const next=n+1;
+  if(!weekUnlocked(next))return '';
+  return `<div class="lesson-next"><a class="btn" href="#/week/${next}" data-next-lesson="${next}">Следующее занятие →</a></div>`;
+}
+function weekPage(n){
+  const w=week(n);if(!w){location.hash='/study';return}
+  const m=mod(n);
+  layout(`<div class="lesson"><a class="link" href="#/study">← Обучение</a><div class="eyebrow">Модуль ${m.number} / 07 · Неделя ${n} / 28</div><h1>${n===1?'Знакомство с Blender и трёхмерным пространством':escape(w.topic)}</h1><p class="muted">${escape(w.topic)}</p>${n===1?lessonOne():`<section><h2>Предварительный план</h2><p>${escape(w.practice)}</p><h3>Ожидаемый результат</h3><p>${escape(w.result)}</p><p class="muted">Подробный урок ещё готовится. Этот план показывает маршрут, но не заменяет учебные инструкции.</p></section>`}<section><h2>Отчёт и состояние</h2><div class="fields"><label class="field">Статус<select id="lesson-status">${statuses.map(s=>`<option ${status(n)===s?'selected':''}>${s}</option>`).join('')}</select></label><label class="field">Что сделал и что стоит проверить<textarea id="lesson-note" placeholder="Сохрани наблюдения, сложности и замечания проверяющего">${escape(state.notes[n]||'')}</textarea></label></div><div class="actions"><button class="btn" id="save-lesson">Сохранить</button><button class="btn secondary" id="copy-report">Скопировать отчёт</button></div><p class="muted">Проверка проходит отдельно в ChatGPT. Статус «Зачтено» устанавливается вручную после обратной связи.</p><div id="lesson-next-slot" aria-live="polite">${lessonNextAction(n)}</div></section></div>`);
+  document.querySelector('#save-lesson').onclick=()=>{
+    state.statuses[n]=document.querySelector('#lesson-status').value;
+    state.notes[n]=document.querySelector('#lesson-note').value;
+    save();
+    document.querySelector('#lesson-next-slot').innerHTML=lessonNextAction(n);
+    toast('Занятие сохранено');
+  };
+  document.querySelector('#lesson-next-slot').addEventListener('click',e=>{
+    const link=e.target.closest('[data-next-lesson]');if(!link)return;
+    const next=Number(link.dataset.nextLesson);
+    if(next!==n+1||status(n)!=='Зачтено'||!weekUnlocked(next)){e.preventDefault();toast('Следующее занятие пока недоступно');return}
+    state.current=next;save();
+  });
+  document.querySelector('#copy-report').onclick=async()=>{const report=`FORMA / LAB · Неделя ${n}\n${w.topic}\nСтатус: ${document.querySelector('#lesson-status').value}\nОтчёт: ${document.querySelector('#lesson-note').value}`;try{await navigator.clipboard.writeText(report);toast('Отчёт скопирован')}catch{toast('Копирование недоступно в этом браузере')}};
+}
 function calendar(){
   const all=modules.flatMap(m=>m.weeks);
   const datesForCalendar=n=>state.dates[n]||{planned:'',final:''};
