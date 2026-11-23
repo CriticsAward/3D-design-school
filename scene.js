@@ -1,4 +1,4 @@
-import {heroScenes} from './hero-scenes.js?v=1';
+import {heroScenes} from './hero-scenes.js?v=4';
 
 export function mountScene(host,sceneIndex,{transition=false}={}){
   const scene=heroScenes[sceneIndex],video=host?.querySelector('.hero-motion');
