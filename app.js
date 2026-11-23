@@ -2,9 +2,9 @@ import modules from './curriculum.json' with {type:'json'};
 import {availableMessages,avatarMarkup} from './chat.js?v=5';
 import {statuses,initial,normalize,datesFor,localDate,localToday,projectSchedule,projectStatus,projectUnlocked,canStartEarly,projectDurationsDays} from './state.js?v=4';
 import {lessonOne} from './lesson-one.js?v=2';
-import {homeView} from './home-view.js?v=9';
-import {mountScene} from './scene.js?v=3';
-import {getHeroSceneIndex,heroScenes} from './hero-scenes.js?v=1';
+import {homeView} from './home-view.js?v=10';
+import {mountScene} from './scene.js?v=4';
+import {getHeroSceneIndex,heroScenes} from './hero-scenes.js?v=2';
 
 const KEY='forma-lab-v1';
 let state;

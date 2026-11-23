@@ -291,8 +291,9 @@ body{overflow-x:hidden}
 .main:has(.home-page) .chat-toggle{color:#f2f7ef;background:#16271cae;border-color:#ffffff69;backdrop-filter:blur(13px)}
 .home-page,.hero{min-height:100svh}
 .hero{position:relative;isolation:isolate;display:flex;align-items:center;width:100%;padding:115px clamp(28px,10vw,195px) 125px;overflow:hidden;background:#131d16;color:#f6f9f1}
-.hero-media,.hero-art,.hero-motion,.hero-shade{position:absolute;inset:0;width:100%;height:100%}
+.hero-media,.hero-picture,.hero-art,.hero-motion,.hero-shade{position:absolute;inset:0;width:100%;height:100%}
 .hero-media{z-index:-2;overflow:hidden;background:#121d16}
+.hero-picture{display:block}
 .hero-art{object-fit:cover;object-position:62% 50%;filter:saturate(.88)}
 .hero-motion{display:block;object-fit:cover;object-position:62% 50%;opacity:0;transition:opacity .72s ease}
 .scene-transition .hero-art,.scene-transition .hero-motion{transition:opacity .72s ease}
@@ -370,9 +371,10 @@ body{overflow-x:hidden}
  .nav a svg{width:20px;height:20px}
  .main:has(.home-page)>.top{top:max(18px,env(safe-area-inset-top));left:20px;right:20px}
  .hero{min-height:100svh;align-items:flex-end;padding:116px 23px calc(135px + env(safe-area-inset-bottom))}
- .hero-media{height:min(42svh,360px);bottom:auto}
- .hero-art,.hero-motion{object-fit:contain;object-position:center top}
- .hero-shade{background:linear-gradient(180deg,#111d1633 0%,#111d1625 34%,#111d16d0 61%,#111b15fd 96%)}
+ .hero-art,.hero-motion{object-fit:cover;object-position:62% 50%}
+ .hero-art{animation:mobile-hero-drift 24s ease-in-out infinite}
+ .hero-motion{display:none}
+ .hero-shade{background:linear-gradient(180deg,#101a1445 0%,#101a1412 22%,#101a1442 43%,#101a14bf 66%,#101a14f2 100%),linear-gradient(90deg,#101a1490 0%,transparent 90%)}
  .hero-copy{width:100%;max-width:590px}
  .hero-copy h1{font-size:clamp(47px,11vw,72px)}
  .hero-copy p{font-size:15px}
@@ -436,6 +438,7 @@ body{overflow-x:hidden}
  .message p{font-size:12px}
  .avatar,.avatar-spacer{width:33px;height:33px;flex-basis:33px}
 }
+@keyframes mobile-hero-drift{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
 @media(max-width:380px){.hero-copy h1{font-size:43px}.nav a{font-size:9px}.nav a svg{width:18px;height:18px}.study-feature{padding:23px 19px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.peer-reaction{opacity:0}.reaction-one{opacity:1}.hero-art{opacity:1}.hero-motion{display:none}}
 

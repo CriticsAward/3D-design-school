@@ -3,7 +3,7 @@ export function homeView({avatarMarkup,lessonMarkup='',heroScene}){
   return `<div class="home-page">
     <section class="hero" aria-label="Добро пожаловать в FORMA / LAB">
       <div class="hero-media" data-scene>
-        <img class="hero-art" src="${heroScene.poster}" width="1280" height="800" alt="${heroScene.alt}" fetchpriority="high">
+        <picture class="hero-picture">${heroScene.mobilePoster?`<source media="(max-width: 800px)" srcset="${heroScene.mobilePoster}">`:''}<img class="hero-art" src="${heroScene.poster}" width="1280" height="800" alt="${heroScene.alt}" fetchpriority="high"></picture>
         <video class="hero-motion" muted playsinline loop preload="none" poster="${heroScene.poster}" aria-hidden="true"></video>
       </div>
       <div class="hero-shade" aria-hidden="true"></div>
